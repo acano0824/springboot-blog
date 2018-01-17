@@ -22,4 +22,10 @@ public class MathController {
         return number+ " minus " + num + " is " + (num - number) + "!";
     }
 
+    @RequestMapping (path = "/multiply/{number}/and/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public String multiply(@PathVariable int number, @PathVariable int num) {
+        return number + " times " + num + " is " + (number * num) + "!";
+    }
+
 }
