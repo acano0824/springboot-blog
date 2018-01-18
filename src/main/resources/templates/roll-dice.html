@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Welcome to Roll Dice! Guess a number:</h1>
+
+<ul>
+
+    <li><h2><a href="/roll-dice/1">1</a></h2></li>
+    <li><h2><a href="/roll-dice/2">2</a></h2></li>
+    <li><h2><a href="/roll-dice/3">3</a></h2></li>
+    <li><h2><a href="/roll-dice/4">4</a></h2></li>
+    <li><h2><a href="/roll-dice/5">5</a></h2></li>
+    <li><h2><a href="/roll-dice/6">6</a></h2></li>
+
+</ul>
+
+<h1 th:if="${guess} == ${random} and ${guess} != null">You rolled a <span th:text="${guess}"></span>. Yay! You guessed right.</h1>
+<h1 th:if="${guess} != ${random}">You rolled a <span th:text="${guess}"></span> but the number was <span th:text="${random}"></span>. Try again.</h1>
+
+<h3 th:if="${guess} == ${random} and ${guess} != null or ${guess} != ${random}">Number of guesses: <span th:text="${counter}"></span>.
+
+    <span th:if="${guess} == ${random} and ${counter &gt;= 12}"> Wow.. You're just.. You're terrible..</span>
+    <span th:if="${guess} == ${random} and ${counter &gt;= 8} and ${counter &lt;= 11}"> Keep your chin up, kid!</span>
+    <span th:if="${guess} == ${random} and ${counter &gt;= 2} and ${counter &lt;= 7}"> BRUH, Good job!</span>
+    <span th:if="${guess} == ${random} and ${counter == 1}"> DUDE, Lucky guess!</span>
+
+</h3>
+
+
+
+</body>
+</html>
