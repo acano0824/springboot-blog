@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: my-header('Show Post')">
+    <!--<head th:replace="fragments/header :: my-header('Individual Post')">-->
+    <!--<head th:replace="fragments/header :: my-header(post.title)">-->
 </head>
 <body>
 <nav th:include="fragments/navbar :: my-navbar"></nav>
 
+<div class="container">
+
 <h3 th:text="${post.title}"></h3>
 <p th:text="${post.body}"></p>
+
+    <a th:href="${'/posts/' + post.id + '/edit'}">Edit</a>
+</div>
 
 <footer th:include="fragments/footer :: my-footer"></footer>
 </body>
