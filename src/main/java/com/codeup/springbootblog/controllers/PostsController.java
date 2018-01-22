@@ -1,6 +1,7 @@
 package com.codeup.springbootblog.controllers;
 
 
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.services.PostService;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,26 @@ public class PostsController {
         this.postSvc = postSvc;
     }
 
+    @GetMapping("/dao-test")
+    @ResponseBody
+    public Iterable<Post> daoTest() {
+//        Iterable<Post> posts = postDao.findAll();
+//
+//        for (Post post : posts) {
+//            System.out.println("---");
+//            System.out.println(" #" + post.getId());
+//            System.out.println(" title: " + post.getTitle());
+//            System.out.println(" body: " + post.getBody());
+//        }
+//        Post post = new post("title c", "body c");
+//
+//        postDao.save(post);
+//
+//        System.out.println(postDao.findAll());
+//        return "Check your console!";
+
+        return postSvc.findAll();
+    }
 
     @GetMapping("/posts")
     public String posts(Model viewModel) {
@@ -48,10 +69,9 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
     public String createPost(@ModelAttribute Post post) {
         postSvc.save(post);
-        return post.getTitle() + " " + post.getBody();
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
@@ -66,6 +86,12 @@ public class PostsController {
         post.setId(id);
         postSvc.save(post);
         return "redirect:/posts/{id}";
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id, @ModelAttribute Post post) {
+        postSvc.delete(id);
+        return "redirect:/posts";
     }
 
 

@@ -16,6 +16,12 @@
         <br />
         <input type="submit" />
     </form>
+    <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post" th:object="${post}">
+        <input th:field="*{id}" type="hidden" />
+        <input type="submit" value="Delete"/>
+    </form>
+
+
 </div>
 
 <footer th:include="fragments/footer :: my-footer"></footer>
