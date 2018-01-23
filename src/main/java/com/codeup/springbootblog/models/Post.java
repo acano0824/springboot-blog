@@ -1,6 +1,7 @@
 package com.codeup.springbootblog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -13,14 +14,24 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = true)
+    @Column(columnDefinition = "TEXT")
     private String body;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User owner;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImage> images;
+
+    @ManyToMany
+    private List<PostCategory> categories;
 
     public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
     }
+
     public Post() {
 
     }

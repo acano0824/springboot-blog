@@ -3,6 +3,7 @@ package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Post;
+import com.codeup.springbootblog.models.User;
 import com.codeup.springbootblog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,6 +94,15 @@ public class PostsController {
         postSvc.delete(id);
         return "redirect:/posts";
     }
+
+//    @ResponseBody
+//    @GetMapping ("/test")
+//    public String test() {
+//        User user = new User (1, "");
+//        Post post = new Post (1, "post_title", "post_body", user);
+//        postSvc.save(post);
+//        return "Saved!";
+//    }
 
 
 }
